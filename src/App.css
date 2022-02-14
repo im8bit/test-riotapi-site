@@ -1,4 +1,5 @@
 .App {
+  background-color: #282c34;
   text-align: center;
 }
 
@@ -14,6 +15,13 @@
 }
 
 .App-header {
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin: 0px 15px 15px;
+  padding: 25px;
+}
+
+.App-main {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
