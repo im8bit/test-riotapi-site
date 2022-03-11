@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
         <header className="App-header">
-            Leaderboard
+            Valorant Leaderboard
         </header>
         <main className="App-main">
             <CurrentLeaderboard />

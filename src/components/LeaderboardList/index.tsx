@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import {leaderboardItem} from "../../lib/api/Leaderboards";
+import LeaderboardItem from "../LeaderboardItem";
 
 export type LeaderboardListProps = {
     list: leaderboardItem[]
@@ -9,38 +10,44 @@ const useStyles = makeStyles(theme => ({
     leaderboard: {
         listStyleType: 'none',
         margin: 0,
-        padding: 0,
-        '& li': {
-            color: '#637484',
-            width: '350px',
-            border: '1px solid white',
-            padding: '5px 25px',
-            margin: '5px',
-            textAlign: 'left',
-            '& span': {
-                width: '50px',
-                display: 'inline-block',
-                background: 'gray',
-                margin: '5px 15px 5px 5px',
-                textAlign: 'right',
-                color: 'white'
-            }
-        }
+        padding: 0
     },
+    tableHeader: {
+        backgroundColor: 'white',
+        display: 'flex',
+    },
+    headerRank: {
+        width: '100px',
+        flexGrow: 0
+    },
+    headerName: {
+        flexGrow: 2
+    },
+    headerWins: {
+        width: '100px',
+        flexGrow: 0
+    }
 }));
 
-const LeaderboardList = ({list} : LeaderboardListProps) => {
+const LeaderboardList = ({list} : LeaderboardListProps) : JSX.Element => {
     const classes = useStyles();
 
     let listItems
     if (list) {
         listItems = list.map((item: leaderboardItem) =>
-            <li key={item.leaderboardRank}><span>{item.leaderboardRank}</span>{item.gameName}</li>
+            <LeaderboardItem rank={item.leaderboardRank} name={item.gameName} wins={item.numberOfWins}/>
         );
     }
 
     return (
-        <ul className={classes.leaderboard}>{listItems}</ul>
+        <>
+            <div className={classes.tableHeader}>
+                <div className={classes.headerRank}>Rank</div>
+                <div className={classes.headerName}>Player Name</div>
+                <div className={classes.headerWins}>Wins</div>
+            </div>
+            <ul className={classes.leaderboard}>{listItems}</ul>
+        </>
     );
 }
 
